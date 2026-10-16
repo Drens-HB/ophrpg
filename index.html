@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11100f">
+  <meta name="description" content="La historia de Yoru: una novela gráfica interactiva de piratas, pérdidas y libertad.">
+  <title>YORU — El mar no tiene dueño</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Yoru, inicio"><span class="brand-mark">☠</span><span>YORU<small>EL MAR NO TIENE DUEÑO</small></span></a>
+    <nav><a href="#historia" class="active">Historia</a><a href="#capitulos">Capítulos</a><a href="#acerca">Proyecto</a></nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-art art art-cover" role="img" aria-label="Ilustración pendiente de Yoru frente al mar">
+        <div class="art-stamp">ARCHIVO<br>01 / SOUTH BLUE</div>
+        <div class="hero-copy"><p class="eyebrow">UNA NOVELA GRÁFICA INTERACTIVA</p><h1>EL MAR<br><em>NO TIENE</em><br>DUEÑO.</h1><p>Una historia de pérdidas, ambición y libertad.</p><button class="primary" id="startReading">Comenzar la lectura <span>↗</span></button></div>
+        <div class="art-note">ILUSTRACIÓN DE PORTADA<br><small>LISTA PARA SUSTITUIR</small></div>
+      </div>
+      <aside class="hero-side"><p class="eyebrow">VOLUMEN I</p><h2>La mujer<br>que desafió<br>su destino.</h2><div class="rule"></div><p>De las costas de Amazon Lily a los mares del South Blue, sigue el nacimiento de una tripulación que todavía no sabe hasta dónde llegará.</p><div class="chapter-count"><strong>06</strong><span>capítulos<br>planeados</span></div></aside>
+    </section>
+
+    <section class="chapter-strip" id="capitulos"><div class="section-heading"><div><p class="eyebrow">EL VIAJE COMIENZA</p><h2>Capítulos</h2></div><span class="heading-note">VOLUMEN 01 — ORÍGENES</span></div><div class="chapter-list" id="chapterList"></div></section>
+
+    <section class="reader-section" id="historia">
+      <div class="section-heading reader-heading"><div><p class="eyebrow">LECTOR INTERACTIVO</p><h2 id="chapterTitle">Prólogo — Amazon Lily</h2></div><div class="reader-tools"><button class="icon-button" id="soundToggle" aria-label="Activar o desactivar sonido" title="Sonido ambiental">♫ <span id="soundLabel">Sonido: apagado</span></button><button class="icon-button" id="fullscreenToggle" title="Pantalla completa" aria-label="Pantalla completa">⛶</button></div></div>
+      <div class="reader" id="reader" tabindex="-1">
+        <div class="reader-topline"><span id="sceneLocation">AMAZON LILY</span><span id="sceneCounter">01 / 08</span></div>
+        <div class="comic-page" id="comicPage" aria-live="polite"></div>
+        <div class="reader-bottom"><button id="prevScene" class="nav-button" disabled>← <span>Anterior</span></button><div class="progress-wrap"><div class="progress-track"><div id="progressBar"></div></div><span id="progressText">1 de 8</span></div><button id="nextScene" class="nav-button"><span>Siguiente</span> →</button></div>
+      </div>
+      <p class="keyboard-hint">También puedes usar las flechas del teclado <kbd>←</kbd> <kbd>→</kbd></p>
+    </section>
+
+    <section class="closing" id="acerca"><div class="closing-mark">☠</div><div><p class="eyebrow">CONTINUARÁ</p><h2>El primer paso<br>hacia algo más grande.</h2><p>Esta historia irá creciendo capítulo a capítulo. Las ilustraciones pueden sustituirse por arte original sin modificar el funcionamiento del lector.</p></div><a href="#capitulos" class="text-link">Explorar capítulos ↑</a></section>
+  </main>
+  <footer><span>YORU PIRATES</span><span>UNA HISTORIA DE MARES, PÉRDIDAS Y AMBICIÓN</span><span>HECHO PARA GITHUB PAGES</span></footer>
+  <script src="js/app.js"></script>
+</body>
+</html>
