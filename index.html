@@ -8,24 +8,41 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="book-scene" aria-label="Manga de Yoru">
-    <div class="book" id="book">
-      <div class="page-shadow"></div>
-      <div class="page-under" id="page-under"></div>
-      <div class="page current" id="page-current">
-        <img id="current-image" src="assets/pages/1.png" alt="Página 1">
-      </div>
-      <div class="page flip-leaf" id="flip-leaf" aria-hidden="true">
-        <img id="flip-image" src="assets/pages/1.png" alt="">
+  <main class="reader" aria-label="Libro digital de Yoru">
+    <div class="book-area" id="book-area">
+      <section class="cover" id="cover" aria-label="Portada de Yoru">
+        <img class="cover-art" src="assets/pages/01_Amazon_Lily.png" alt="">
+        <div class="cover-shade"></div>
+        <div class="cover-content">
+          <p class="cover-kicker">UNA HISTORIA DE PIRATAS</p>
+          <div class="cover-logo">YORU</div>
+          <h1>El mar<br><em>no tiene dueño</em></h1>
+          <div class="cover-rule"></div>
+          <p class="cover-subtitle">TOMO I</p>
+          <button id="open-book" class="cover-open" type="button" aria-label="Abrir el libro">ABRIR EL LIBRO <span>→</span></button>
+        </div>
+      </section>
+
+      <div class="book" id="book" hidden>
+        <div class="page-under" id="page-under"></div>
+        <div class="page current" id="page-current">
+          <img id="current-image" src="assets/pages/01_Amazon_Lily.png" alt="Página 1" draggable="false">
+        </div>
+        <div class="page flip-leaf" id="flip-leaf" aria-hidden="true">
+          <img id="flip-image" src="assets/pages/01_Amazon_Lily.png" alt="" draggable="false">
+        </div>
       </div>
     </div>
 
-    <button class="nav prev" id="prev" type="button" aria-label="Página anterior" disabled>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8"/></svg>
-    </button>
-    <button class="nav next" id="next" type="button" aria-label="Página siguiente">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 8 8-8 8"/></svg>
-    </button>
+    <nav class="controls" id="controls" aria-label="Navegación de páginas" hidden>
+      <button class="nav" id="prev" type="button" aria-label="Página anterior" disabled>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8"/></svg>
+      </button>
+      <span class="control-hint">← <span id="page-number">01 / 08</span> →</span>
+      <button class="nav" id="next" type="button" aria-label="Página siguiente">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 8 8-8 8"/></svg>
+      </button>
+    </nav>
   </main>
   <script src="app.js"></script>
 </body>
