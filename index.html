@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171411">
+  <meta name="description" content="Yoru: una novela gráfica de mares, pérdidas y ambición.">
+  <title>YORU — El mar no tiene dueño</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="novel" id="novel">
+    <header class="reader-head">
+      <a class="wordmark" href="#top" aria-label="Yoru, inicio"><span>YORU</span><small>EL MAR NO TIENE DUEÑO</small></a>
+      <div class="chapter-meta"><span id="chapterLabel">PRÓLOGO — AMAZON LILY</span><i></i><span id="pageCount">01 / 08</span></div>
+    </header>
+
+    <section class="chapter-picker" id="chapterPicker" aria-label="Elegir capítulo">
+      <button class="chapter-chip active" data-chapter="0"><b>00</b><span>Amazon Lily</span></button>
+      <button class="chapter-chip" data-chapter="1"><b>01</b><span>Suiren</span></button>
+      <button class="chapter-chip" data-chapter="2"><b>02</b><span>La expulsión</span></button>
+      <button class="chapter-chip" data-chapter="3"><b>03</b><span>Náufraga</span></button>
+      <button class="chapter-chip" data-chapter="4"><b>04</b><span>Tumi</span></button>
+      <button class="chapter-chip" data-chapter="5"><b>05</b><span>Yoru Pirates</span></button>
+    </section>
+
+    <section class="comic-wrap" aria-label="Página del manga">
+      <div class="comic-page" id="comicPage" aria-live="polite"></div>
+    </section>
+
+    <nav class="reader-nav" aria-label="Navegación de páginas">
+      <button id="prevScene" class="nav-btn" disabled><span aria-hidden="true">←</span> Anterior</button>
+      <div class="page-dots" id="pageDots" aria-label="Páginas del capítulo"></div>
+      <button id="nextScene" class="nav-btn">Siguiente <span aria-hidden="true">→</span></button>
+    </nav>
+    <footer class="reader-foot"><span>YORU PIRATES</span><span id="chapterProgress">PÁGINA 1 DE 8</span><button id="backToChapters">CAPÍTULOS ↑</button></footer>
+  </main>
+  <script src="js/app.js"></script>
+</body>
+</html>
