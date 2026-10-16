@@ -1,103 +1,95 @@
 const pages = [
-  { file: "1.png", title: "AMAZON LILY", caption: "El hogar que la vio crecer." },
-  { file: "2.png", title: "LA MENTORA", caption: "Una guerrera que le enseñó a encontrar su propio rumbo." },
-  { file: "3.png", title: "LA PARTIDA DE SUIREN", caption: "Una promesa. Una espera. Una noticia imposible de aceptar." },
-  { file: "4.png", title: "LA EXPULSIÓN", caption: "Yoru deja atrás el único hogar que había conocido." },
-  { file: "5.png", title: "TUMI", caption: "El mar le arrebató el rumbo; una isla desconocida le dio otra oportunidad." },
-  { file: "6s.png", title: "LOS MERCENARIOS", caption: "Sobrevivir fue el primer trabajo. Confiar, algo más difícil." },
-  { file: "7.png", title: "YORU PIRATES", caption: "Una bandera, una tripulación y un horizonte por conquistar." }
+  "1.png",
+  "2.png",
+  "3.png",
+  "4.png",
+  "5.png",
+  "6.png",
+  "7.png",
 ];
 
-const image = document.getElementById("manga-page");
-const currentPage = document.getElementById("current-page");
-const totalPages = document.getElementById("total-pages");
-const chapter = document.getElementById("page-chapter");
-const caption = document.getElementById("page-caption");
-const progress = document.getElementById("progress-bar");
-const prev = document.getElementById("prev-page");
-const next = document.getElementById("next-page");
-const prevLabel = document.getElementById("prev-label");
-const nextLabel = document.getElementById("next-label");
-const thumbs = document.getElementById("thumbnail-grid");
-const toggleThumbs = document.getElementById("toggle-thumbnails");
-const stage = document.getElementById("page-stage");
-let active = 0;
-let touchStartX = null;
+const currentImage = document.getElementById("current-image");
+const under = document.getElementById("page-under");
+const leaf = document.getElementById("flip-leaf");
+const flipImage = document.getElementById("flip-image");
+const prevButton = document.getElementById("prev");
+const nextButton = document.getElementById("next");
+let index = 0;
+let busy = false;
+const duration = 620;
 
-totalPages.textContent = String(pages.length).padStart(2, "0");
-
-function renderThumbnails() {
-  thumbs.innerHTML = "";
-  pages.forEach((page, index) => {
-    const button = document.createElement("button");
-    button.className = "thumb";
-    button.type = "button";
-    button.setAttribute("aria-current", index === active ? "true" : "false");
-    button.innerHTML = `<img src="assets/pages/${page.file}" alt="" loading="lazy"><span>${String(index + 1).padStart(2, "0")} · ${page.title}</span>`;
-    button.addEventListener("click", () => {
-      showPage(index);
-      document.getElementById("lector").scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-    thumbs.appendChild(button);
+function imagePath(i) {
+  return `assets/pages/${pages[i]}`;
+}
+function preload(i) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = imagePath(i);
   });
 }
+function updateButtons() {
+  prevButton.disabled = index === 0 || busy;
+  nextButton.disabled = index === pages.length - 1 || busy;
+  currentImage.alt = `Página ${index + 1}`;
+}
+async function turn(direction) {
+  if (busy) return;
+  const target = index + direction;
+  if (target < 0 || target >= pages.length) return;
+  busy = true;
+  updateButtons();
 
-function showPage(index) {
-  active = Math.max(0, Math.min(pages.length - 1, index));
-  const page = pages[active];
-  image.classList.add("is-changing");
-  const nextSrc = `assets/pages/${page.file}`;
-  const preload = new Image();
-  preload.onload = () => {
-    image.src = nextSrc;
-    image.alt = `Página ${active + 1} de ${pages.length}: ${page.title}`;
-    image.classList.remove("is-changing");
-  };
-  preload.onerror = () => {
-    image.src = nextSrc;
-    image.classList.remove("is-changing");
-  };
-  preload.src = nextSrc;
-  currentPage.textContent = String(active + 1).padStart(2, "0");
-  chapter.textContent = page.title;
-  caption.textContent = page.caption;
-  progress.style.width = `${((active + 1) / pages.length) * 100}%`;
-  prev.disabled = prevLabel.disabled = active === 0;
-  next.disabled = nextLabel.disabled = active === pages.length - 1;
-  [...thumbs.children].forEach((el, i) => el.setAttribute("aria-current", i === active ? "true" : "false"));
+  await preload(target);
+  const oldSrc = imagePath(index);
+  const newSrc = imagePath(target);
+
+  // The incoming page is visible underneath; the current page becomes the turning leaf.
+  under.style.backgroundImage = `url("${newSrc}")`;
+  under.style.backgroundSize = "100% 100%";
+  under.style.backgroundPosition = "center";
+  under.style.backgroundRepeat = "no-repeat";
+  flipImage.src = oldSrc;
+  leaf.className = `page flip-leaf turning ${direction > 0 ? "forward" : "backward"}`;
+
+  // Set the new page below the turning leaf, then animate the old sheet away.
+  currentImage.src = newSrc;
+  if (direction < 0) {
+    // For a backward turn, mirror the motion so the sheet returns from the right.
+    leaf.style.transformOrigin = "right center";
+  } else {
+    leaf.style.transformOrigin = "left center";
+  }
+
+  window.setTimeout(() => {
+    index = target;
+    leaf.className = "page flip-leaf";
+    leaf.style.transform = "";
+    under.style.backgroundImage = "";
+    currentImage.src = imagePath(index);
+    busy = false;
+    updateButtons();
+  }, duration + 25);
 }
 
-prev.addEventListener("click", () => showPage(active - 1));
-next.addEventListener("click", () => showPage(active + 1));
-prevLabel.addEventListener("click", () => showPage(active - 1));
-nextLabel.addEventListener("click", () => showPage(active + 1));
-
-document.getElementById("begin-reading").addEventListener("click", () => {
-  document.getElementById("lector").scrollIntoView({ behavior: "smooth", block: "start" });
-});
-
-toggleThumbs.addEventListener("click", () => {
-  const open = thumbs.hidden;
-  thumbs.hidden = !open;
-  toggleThumbs.setAttribute("aria-expanded", String(open));
-  toggleThumbs.innerHTML = open ? 'Ocultar páginas <span>−</span>' : 'Ver todas las páginas <span>＋</span>';
-});
-
+nextButton.addEventListener("click", () => turn(1));
+prevButton.addEventListener("click", () => turn(-1));
 document.addEventListener("keydown", (event) => {
   if (event.altKey || event.ctrlKey || event.metaKey) return;
-  if (event.key === "ArrowLeft") showPage(active - 1);
-  if (event.key === "ArrowRight") showPage(active + 1);
+  if (event.key === "ArrowRight") turn(1);
+  if (event.key === "ArrowLeft") turn(-1);
 });
 
-stage.addEventListener("touchstart", (event) => {
-  touchStartX = event.changedTouches[0].screenX;
+let touchStartX = null;
+document.getElementById("book").addEventListener("touchstart", (event) => {
+  touchStartX = event.changedTouches[0].clientX;
 }, { passive: true });
-stage.addEventListener("touchend", (event) => {
+document.getElementById("book").addEventListener("touchend", (event) => {
   if (touchStartX === null) return;
-  const delta = event.changedTouches[0].screenX - touchStartX;
-  if (Math.abs(delta) > 55) showPage(active + (delta < 0 ? 1 : -1));
+  const delta = event.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(delta) > 60) turn(delta < 0 ? 1 : -1);
   touchStartX = null;
 }, { passive: true });
 
-renderThumbnails();
-showPage(0);
+updateButtons();

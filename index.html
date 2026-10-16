@@ -3,92 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101010">
-  <meta name="description" content="Yoru — El mar no tiene dueño. Una historia de promesas, pérdida y una tripulación por construir.">
-  <title>Yoru — El mar no tiene dueño</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#0b0909">
+  <title>Yoru</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="ambient ambient-one" aria-hidden="true"></div>
-  <div class="ambient ambient-two" aria-hidden="true"></div>
-
-  <main class="site-shell">
-    <header class="masthead">
-      <a class="brand" href="#inicio" aria-label="Yoru, inicio">YORU</a>
-      <div class="brand-copy">
-        <span class="eyebrow">UNA HISTORIA DE PIRATAS</span>
-        <span class="tagline">EL MAR NO TIENE DUEÑO</span>
+  <main class="book-scene" aria-label="Manga de Yoru">
+    <div class="book" id="book">
+      <div class="page-shadow"></div>
+      <div class="page-under" id="page-under"></div>
+      <div class="page current" id="page-current">
+        <img id="current-image" src="assets/pages/1.png" alt="Página 1">
       </div>
-      <div class="masthead-mark">SOUTH BLUE <span>✦</span> GRAND LINE</div>
-    </header>
-
-    <section class="hero" id="inicio">
-      <div class="hero-art">
-        <img src="assets/pages/01_Amazon_Lily.png" alt="Página inicial de Yoru en Amazon Lily">
-        <div class="hero-vignette"></div>
-        <div class="hero-title">
-          <p class="chapter-label">CRÓNICAS DE UNA KUJA</p>
-          <h1>El mar<br><em>no tiene dueño</em></h1>
-          <p class="hero-subtitle">Una promesa quedó atrás. El horizonte, no.</p>
-          <button class="primary-button" id="begin-reading" type="button">
-            <span>Comenzar a leer</span><span aria-hidden="true">↘</span>
-          </button>
-        </div>
-        <div class="hero-index">TOMO I <span>—</span> 08 PÁGINAS</div>
+      <div class="page flip-leaf" id="flip-leaf" aria-hidden="true">
+        <img id="flip-image" src="assets/pages/1.png" alt="">
       </div>
-      <div class="hero-foot">
-        <span>AMAZON LILY · TUMI · LONG RING LONG LAND</span>
-        <span>DESLIZA PARA DESCUBRIR <b>↓</b></span>
-      </div>
-    </section>
+    </div>
 
-    <section class="reader-section" id="lector" aria-label="Lector del manga">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">TOMO I · HISTORIA COMPLETA</p>
-          <h2>El comienzo del viaje</h2>
-        </div>
-        <p class="reader-note">Lee a tu ritmo.<br>El mar no espera a nadie.</p>
-      </div>
-
-      <div class="reader-frame">
-        <div class="reader-topline">
-          <span id="page-chapter">AMAZON LILY</span>
-          <span class="page-counter"><strong id="current-page">01</strong><i>/</i><span id="total-pages">08</span></span>
-        </div>
-        <div class="page-stage" id="page-stage">
-          <button class="stage-arrow arrow-left" id="prev-page" type="button" aria-label="Página anterior">‹</button>
-          <img id="manga-page" src="assets/pages/01_Amazon_Lily.png" alt="Página 1 de 8 del manga de Yoru" draggable="false">
-          <button class="stage-arrow arrow-right" id="next-page" type="button" aria-label="Página siguiente">›</button>
-          <div class="stage-loading" id="stage-loading" aria-hidden="true"></div>
-        </div>
-        <div class="reader-controls">
-          <button class="text-button" id="prev-label" type="button">← Anterior</button>
-          <div class="progress-track" aria-label="Progreso de lectura"><span id="progress-bar"></span></div>
-          <button class="text-button" id="next-label" type="button">Siguiente →</button>
-        </div>
-        <div class="reader-bottom">
-          <span id="page-caption">El hogar que la vio crecer.</span>
-          <button class="quiet-button" id="toggle-thumbnails" type="button" aria-expanded="false">Ver todas las páginas <span>＋</span></button>
-        </div>
-        <div class="thumbnail-grid" id="thumbnail-grid" hidden></div>
-      </div>
-      <p class="keyboard-hint">Consejo: usa las teclas <kbd>←</kbd> <kbd>→</kbd> para pasar de página.</p>
-    </section>
-
-    <section class="closing-note">
-      <span class="ornament">✦</span>
-      <p>Hay viajes que comienzan cuando una persona se marcha.<br><em>Y otros, cuando decides no volver atrás.</em></p>
-      <span class="closing-signature">YORU PIRATES</span>
-    </section>
-
-    <footer class="site-footer">
-      <span>YORU — EL MAR NO TIENE DUEÑO</span>
-      <span>HECHO PARA LEERSE SIN PRISA <b>✦</b></span>
-    </footer>
+    <button class="nav prev" id="prev" type="button" aria-label="Página anterior" disabled>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8"/></svg>
+    </button>
+    <button class="nav next" id="next" type="button" aria-label="Página siguiente">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 8 8-8 8"/></svg>
+    </button>
   </main>
   <script src="app.js"></script>
 </body>
