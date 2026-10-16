@@ -20,11 +20,11 @@ body{background:#090807;color:var(--paper)}
 .panel .panel-label{font-family:var(--display);font-size:8px;letter-spacing:.18em}
 /* Original placeholder gradients are replaced with generated, text-free illustrations. */
 .panel.p1{--art:url('../assets/images/amazon-lily.png');background-position:center}
-.panel.p2{--art:url('../assets/images/yoru-entrenamiento.png')}
-.panel.p3{--art:url('../assets/images/yoru-entrenamiento.png')}
+.panel.p2{--art:url('../assets/images/p2.png')}
+.panel.p3{--art:url('../assets/images/p3.png')}
 .panel.p5{--art:url('../assets/images/yoru-entrenamiento.png')}
 .panel.p6{--art:url('../assets/images/yoru-entrenamiento.png')}
-.panel.p4{--art:url('../assets/images/isla-sombra.png')}
+.panel.p4{--art:url('../assets/images/p4.png')}
 .panel.p7{--art:url('../assets/images/mar-tormenta.png')}
 .panel.p8{--art:url('../assets/images/mar-oscuridad.png')}
 .panel.p9{--art:url('../assets/images/mar-oscuridad.png')}
