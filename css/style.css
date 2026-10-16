@@ -21,7 +21,7 @@ body{background:#090807;color:var(--paper)}
 /* Original placeholder gradients are replaced with generated, text-free illustrations. */
 .panel.p1{--art:url('../assets/images/amazon-lily.png');background-position:center}
 .panel.p2,.panel.p3,.panel.p5,.panel.p6{--art:url('../assets/images/yoru-entrenamiento.png')}
-.panel.p4{--art:url('../assets/images/isla-sombría.png')}
+.panel.p4{--art:url('../assets/images/isla-sombra.png')}
 .panel.p7{--art:url('../assets/images/mar-tormenta.png')}
 .panel.p8{--art:url('../assets/images/mar-oscuridad.png')}
 .reader-nav{min-height:52px;padding:5px 14px;border-top:1px solid #9b7958;background:#100e0c}.nav-btn{font-family:var(--display);font-size:12px;letter-spacing:.04em}.nav-btn span{font-size:19px}.page-dots{gap:8px}.page-dot{width:9px;height:9px;border-color:#90785f}.page-dot.active{background:#b72e35;border-color:#b72e35}
