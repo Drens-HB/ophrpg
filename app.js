@@ -1,3 +1,6 @@
+const script = document.currentScript;
+const pagesFolder = script.dataset.pages;
+
 const pages = [
   "1.png",
   "2.png",
@@ -7,6 +10,10 @@ const pages = [
   "6.png",
   "7.png",
 ];
+
+function path(i) {
+  return `${pagesFolder}${pages[i]}`;
+}
 
 const cover = document.getElementById("cover");
 const openBookButton = document.getElementById("open-book");
