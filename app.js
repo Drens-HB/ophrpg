@@ -31,7 +31,6 @@ let busy = false;
 let opened = false;
 const duration = 620;
 
-function path(i) { return `assets/pages/${pages[i]}`; }
 function preload(i) {
   return new Promise(resolve => {
     const img = new Image();
